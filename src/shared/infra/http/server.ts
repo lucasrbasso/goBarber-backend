@@ -2,18 +2,19 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
-import bodyParser from 'body-parser';
 
+import cors from 'cors';
+
+import uploadConfig from '@config/upload';
+import AppError from '@shared/errors/AppError';
 import routes from './routes';
-import AppError from './errors/AppError';
 
-import uploadConfig from './config/upload';
-
-import './database';
+import '@shared/infra/typeorm';
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 
