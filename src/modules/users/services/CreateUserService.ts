@@ -19,7 +19,11 @@ class CreatUserService {
         private usersRepository: IUserRepository,
     ) {}
 
-    public async execute({ name, email, password }: Request): Promise<User> {
+    public async execute({
+        name,
+        email,
+        password,
+    }: Request): Promise<Omit<User, 'password'>> {
         const checkUserExists = await this.usersRepository.findByEmail(email);
 
         if (checkUserExists) {
@@ -34,9 +38,16 @@ class CreatUserService {
             password: hashedPassword,
         });
 
-        delete user.password;
+        const userReturn = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            avatar: user.avatar,
+            created_at: user.created_at,
+            updated_at: user.updated_at,
+        };
 
-        return user;
+        return userReturn;
     }
 }
 
