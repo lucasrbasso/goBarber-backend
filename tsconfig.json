@@ -8,6 +8,7 @@
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
     "baseUrl": "./src",
+    "allowJs": true,
     "paths": {
         "@modules/*": ["modules/*"],
         "@config/*": ["config/*"],
@@ -17,6 +18,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   }
 }
