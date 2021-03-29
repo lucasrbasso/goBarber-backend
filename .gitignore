@@ -2,6 +2,8 @@ node_modules
 .auth.ts
 .vscode
 coverage
+.env
+ormconfig.json
 build/
 tmp/*
 !tmp/.gitkeep
