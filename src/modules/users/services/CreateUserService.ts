@@ -1,3 +1,5 @@
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 
 import { injectable, inject } from 'tsyringe';
@@ -20,6 +22,9 @@ class CreatUserService {
 
         @inject('HashProvider')
         private hashProvider: IHashProvider,
+
+        @inject('CacheProvider')
+        private cacheProvider: ICacheProvider,
     ) {}
 
     public async execute({ name, email, password }: Request): Promise<User> {
@@ -36,6 +41,8 @@ class CreatUserService {
             email,
             password: hashedPassword,
         });
+
+        this.cacheProvider.invalidatePrefix('providers-list');
 
         return user;
     }
