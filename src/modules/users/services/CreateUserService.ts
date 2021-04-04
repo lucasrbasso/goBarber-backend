@@ -1,5 +1,4 @@
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import AppError from '@shared/errors/AppError';
 
 import { injectable, inject } from 'tsyringe';
