@@ -13,13 +13,13 @@ export default class ProviderMonthAvailability {
         );
 
         const { provider_id } = request.params;
-        const { month, year } = request.body;
+        const { month, year } = request.query;
 
         const availability = await listProviderMonthAvailabilityService.execute(
             {
                 provider_id,
-                month,
-                year,
+                month: Number(month),
+                year: Number(year),
             },
         );
 

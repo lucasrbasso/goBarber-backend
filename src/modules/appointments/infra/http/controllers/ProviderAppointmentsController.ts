@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { classToClass } from 'class-transformer';
 
 import { container } from 'tsyringe';
 
@@ -14,15 +15,15 @@ export default class ProviderAppointmentsController {
         );
 
         const provider_id = request.user.id;
-        const { day, month, year } = request.body;
+        const { day, month, year } = request.query;
 
         const appointments = await listProviderAppointments.execute({
             provider_id,
-            day,
-            month,
-            year,
+            day: Number(day),
+            month: Number(month),
+            year: Number(year),
         });
 
-        return response.json(appointments);
+        return response.json(classToClass(appointments));
     }
 }
