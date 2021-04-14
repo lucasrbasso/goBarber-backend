@@ -24,6 +24,16 @@ class NotificationsRepository implements INotificationsRepository {
 
         return notification;
     }
+
+    public async listById(id: string): Promise<Notification[]> {
+        const notifications = this.ormRepository.find({
+            where: {
+                recipient_id: { $eq: `${id}` },
+            },
+        });
+
+        return notifications;
+    }
 }
 
 export default NotificationsRepository;
